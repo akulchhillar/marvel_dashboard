@@ -8,8 +8,8 @@ import time
 import requests
 import hashlib
 
-public_key = "d21ee0f608a598d055ec4844c765da8c"
-private_key = "1a2ef3e7cd4bb9e0ed8d510512dfaae6af94d71b"
+public_key = "your public key"
+private_key = "your private key"
 
 app = dash.Dash(__name__)
 app.title = "Marvel Universe"
@@ -52,13 +52,13 @@ app.layout = ddk.App(children=[ddk.Block(children=components.search_box),
 def update_name(value):
     ts = str(time.time())
     hash = hashlib.md5(ts + private_key + public_key).hexdigest()
-    url = "https://gateway.marvel.com:443/v1/public/characters/%s?&ts=%s&apikey=d21ee0f608a598d055ec4844c765da8c&hash=%s" % (value,ts, hash)
+    url = "https://gateway.marvel.com:443/v1/public/characters/%s?&ts=%s&apikey=yourpublickey&hash=%s" % (value,ts, hash)
     req = requests.get(url)
     name = req.json()["data"]["results"][0]["name"]
     image_src= req.json()["data"]["results"][0]["thumbnail"]["path"] + "/portrait_incredible.jpg"
     description = req.json()["data"]["results"][0]["description"]
     comics_available = req.json()["data"]["results"][0]["comics"]["available"]
-    comic_url = "https://gateway.marvel.com:443/v1/public/characters/%s/comics?offset=%s&ts=%s&apikey=d21ee0f608a598d055ec4844c765da8c&hash=%s" % (value,comics_available-1,ts, hash)
+    comic_url = "https://gateway.marvel.com:443/v1/public/characters/%s/comics?offset=%s&ts=%s&apikey=yourpublickey&hash=%s" % (value,comics_available-1,ts, hash)
 
     events = req.json()["data"]["results"][0]["events"]["available"]
     stories = req.json()["data"]["results"][0]["stories"]["available"]
