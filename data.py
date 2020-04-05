@@ -3,8 +3,8 @@ import pandas as pd
 import hashlib
 import time
 
-public_key = "d21ee0f608a598d055ec4844c765da8c"
-private_key = "1a2ef3e7cd4bb9e0ed8d510512dfaae6af94d71b"
+public_key = "yourkey"
+private_key = "yourkey"
 ts = str(time.time())
 hash = hashlib.md5(ts+private_key+public_key).hexdigest()
 
@@ -17,7 +17,7 @@ while count<16:
     character_name = []
     comics = []
 
-    url = "https://gateway.marvel.com:443/v1/public/characters?limit=100&offset=%s&ts=%s&apikey=d21ee0f608a598d055ec4844c765da8c&hash=%s" % (
+    url = "https://gateway.marvel.com:443/v1/public/characters?limit=100&offset=%s&ts=%s&apikey=yourkey&hash=%s" % (
     offset,
     ts, hash)
 
